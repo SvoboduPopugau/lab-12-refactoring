@@ -20,9 +20,9 @@ class Histogram {
  public:
   static Histogram& Instance();
   void ResetSkipped();
-  void setScore(float score);
+  void setAvg(float score);
   void IncSkipped();
-  [[nodiscard]] float getScore() const;
+  [[nodiscard]] float getAvg() const;
   [[nodiscard]] uint getSkipped() const;
 
  private:
@@ -31,7 +31,7 @@ class Histogram {
   Histogram& operator = (Histogram& tmp) = delete;
 
  private:
-  float score_ = 0;
+  float avg_ = 0;
   uint skipped_ = 0;
 };
 

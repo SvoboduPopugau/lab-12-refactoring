@@ -7,8 +7,8 @@ Histogram& Histogram::Instance() {
   static Histogram res;
   return res;
 }
-float Histogram::getScore() const { return score_; }
+float Histogram::getAvg() const { return avg_; }
 uint Histogram::getSkipped() const { return skipped_; }
-void Histogram::ResetSkippedt() { skipped_ = 0; }
-void Histogram::setScore(float score) { score_ = score; }
+void Histogram::ResetSkipped() { skipped_ = 0; }
+void Histogram::setAvg(float score) { avg_ = score; }
 void Histogram::IncSkipped() { ++skipped_; };
