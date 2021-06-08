@@ -1,20 +1,17 @@
-//
-// Created by vladislav on 07.06.2021.
-//
+// Copyright 2020 Your Name <your_email>
 
 #include "StatSender.hpp"
-void StatSender::OnLoaded(const std::vector<Item>& new_items)  {
+void StatSender::OnLoaded(const std::vector<Item>& new_items) {
   log_->WriteDebug("StatSender::OnDataLoad");
 
   AsyncSend(new_items, "/items/loaded");
 }
-void StatSender::Skip(const Item& item) {
-  AsyncSend({item}, "/items/skiped");
-}
+void StatSender::Skip(const Item& item) { AsyncSend({item}, "/items/skiped"); }
 void StatSender::AsyncSend(const std::vector<Item>& items,
                            std::string_view path) {
-  log_->Write("send stat: " + std::string(path) + " " + std::to_string(items.size()));
-//  log_->Write("send stat " + std::to_string(items.size()));
+  log_->Write("send stat: " + std::string(path) + " " +
+              std::to_string(items.size()));
+  //  log_->Write("send stat " + std::to_string(items.size()));
 
   for (const auto& item : items) {
     log_->WriteDebug("send: " + item.id);

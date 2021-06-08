@@ -1,12 +1,8 @@
-//
-// Created by vladislav on 07.06.2021.
-//
+// Copyright 2020 Your Name <your_email>
 
 #include "PageContainer.hpp"
 
-const Item& PageContainer::ByIndex(size_t i) const {
-  return data_[i];
-}
+const Item& PageContainer::ByIndex(size_t i) const { return data_[i]; }
 const Item& PageContainer::ById(const std::string& id) const {
   auto it = std::find_if(std::begin(data_), std::end(data_),
                          [&id](const auto& i) { return id == i.id; });
@@ -25,11 +21,10 @@ void PageContainer::Load(std::istream& io, float threshold) {
 
     Item item;
     stream >> item.id >> item.name >> item.score;
-    Log::Instance().WriteDebug("DEBUG_LOG " + item.id + " " + item.name + " " + std::to_string(item.score));
 
-      if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
-        throw std::runtime_error("already seen");
-        }
+    if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
+      throw std::runtime_error("already seen");
+    }
 
     if (item.score > threshold) {
       data.push_back(std::move(item));
@@ -40,7 +35,7 @@ void PageContainer::Load(std::istream& io, float threshold) {
       Histogram::Instance().IncSkipped();
     }
   }
-  Histogram::Instance().setAvg(sum/ item_count);
+  Histogram::Instance().setAvg(sum / item_count);
 
   if (data.size() < kMinLines) {
     throw std::runtime_error("Correct items less than kMinLines");
@@ -53,11 +48,9 @@ void PageContainer::Load(std::istream& io, float threshold) {
 void PageContainer::RawDataLoad(std::istream& io) {
   std::vector<std::string> raw_data;
 
-  if (!io)
-    throw std::runtime_error("Stream is not exist");
+  if (!io) throw std::runtime_error("Stream is not exist");
 
-  if (io.peek() == EOF)
-    throw std::runtime_error("Stream is empty");
+  if (io.peek() == EOF) throw std::runtime_error("Stream is empty");
 
   Log::Instance().WriteDebug("Stream can be read");
 
@@ -106,7 +99,7 @@ void PageContainer::Reload(float threshold) {
       Histogram::Instance().IncSkipped();
     }
   }
-  Histogram::Instance().setAvg(sum/item_count);
+  Histogram::Instance().setAvg(sum / item_count);
 
   if (data.size() < kMinLines) {
     throw std::runtime_error("Correct items less than kMinLines");
@@ -122,11 +115,11 @@ void PageContainer::PrintTable() const {
   std::cout << separator;
   for (size_t i = 0; i < data_.size(); ++i) {
     const auto& item = ByIndex(i);
-    std::cout << "|   " << item.id << "\t |\t\t" <<
-              item.name << "\t\t|\t" << item.score << "\t\t|" << std::endl;
+    std::cout << "|   " << item.id << "\t |\t\t" << item.name << "\t\t|\t"
+              << item.score << "\t\t|" << std::endl;
     const auto& item2 = ById(std::to_string(i));
-    std::cout << "|   " << item2.id << "\t |\t\t" <<
-              item2.name << "\t\t|\t" << item2.score << "\t\t|" << std::endl;
+    std::cout << "|   " << item2.id << "\t |\t\t" << item2.name << "\t\t|\t"
+              << item2.score << "\t\t|" << std::endl;
     std::cout << separator;
   }
 }

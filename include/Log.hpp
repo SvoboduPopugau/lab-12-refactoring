@@ -4,11 +4,11 @@
 
 // Copyright 2020 Your Name <your_email>
 
-#ifndef LOG_HPP_
-#define LOG_HPP_
+#ifndef INCLUDE_LOG_HPP_
+#define INCLUDE_LOG_HPP_
 
-#include <string>
 #include <iostream>
+#include <string>
 
 class Log {
  public:
@@ -18,7 +18,7 @@ class Log {
   void setLevel(bool level);
 
  private:
-  explicit Log() = default;
+  Log() = default;
   Log(Log& tmp) = delete;
   Log& operator=(Log& tmp) = delete;
   ~Log() = default;
@@ -28,4 +28,4 @@ class Log {
   mutable std::ostream* out_ = &std::cout;
 };
 
-#endif  // LOG_HPP_
+#endif  // INCLUDE_LOG_HPP_

@@ -1,6 +1,7 @@
 // Copyright 2020 Your Name <your_email>
 
 #include <algorithm>
+#include <boost/program_options.hpp>
 #include <fstream>
 #include <iostream>
 #include <set>
@@ -8,13 +9,12 @@
 #include <string>
 #include <string_view>
 #include <vector>
-#include <boost/program_options.hpp>
 
+#include "Item.hpp"
 #include "Log.hpp"
-#include "header.hpp"
-#include "UsedMemory.hpp"
-#include "StatSender.hpp"
 #include "PageContainer.hpp"
+#include "StatSender.hpp"
+#include "UsedMemory.hpp"
 
 namespace po = boost::program_options;
 

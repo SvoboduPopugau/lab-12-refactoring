@@ -1,6 +1,4 @@
-//
-// Created by vladislav on 07.06.2021.
-//
+// Copyright 2020 Your Name <your_email>
 
 #include "Histogram.hpp"
 Histogram& Histogram::Instance() {

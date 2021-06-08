@@ -1,7 +1,7 @@
 // Copyright 2020 Your Name <your_email>
 
-#ifndef INCLUDE_HEADER_HPP_
-#define INCLUDE_HEADER_HPP_
+#ifndef INCLUDE_ITEM_HPP_
+#define INCLUDE_ITEM_HPP_
 
 #include <string>
 
@@ -11,4 +11,4 @@ struct Item {
   float score = 0;
 };
 
-#endif // INCLUDE_HEADER_HPP_
+#endif  // INCLUDE_ITEM_HPP_

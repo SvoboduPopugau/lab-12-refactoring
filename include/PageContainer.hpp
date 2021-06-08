@@ -4,8 +4,8 @@
 
 // Copyright 2020 Your Name <your_email>
 
-#ifndef PAGECONTAINER_H_
-#define PAGECONTAINER_H_
+#ifndef INCLUDE_PAGECONTAINER_H_
+#define INCLUDE_PAGECONTAINER_H_
 
 #include <algorithm>
 #include <fstream>
@@ -18,10 +18,10 @@
 #include <vector>
 
 #include "Histogram.hpp"
+#include "Item.hpp"
 #include "Log.hpp"
 #include "StatSender.hpp"
 #include "UsedMemory.hpp"
-#include "header.hpp"
 
 constexpr size_t kMinLines = 10;
 
@@ -41,7 +41,7 @@ class PageContainer {
   size_t GetRawDataSize();
   size_t GetDataSize();
 
-  PageContainer(UsedMemory* memory_counter)
+  explicit PageContainer(UsedMemory* memory_counter)
       : memory_counter_(memory_counter),
         stat_sender_(new StatSender(Log::Instance())) {}
 
@@ -55,4 +55,4 @@ class PageContainer {
   std::vector<std::string> raw_data_;
 };
 
-#endif  // PAGECONTAINER_H_
+#endif  // INCLUDE_PAGECONTAINER_H_

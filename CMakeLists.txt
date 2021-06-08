@@ -34,7 +34,6 @@ find_package(Boost CONFIG REQUIRED program_options)
 
 add_library(${PROJECT_NAME} STATIC
   # enum your files and delete this comment
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
         include/Log.hpp sources/Log.cpp include/UsedMemory.hpp sources/UsedMemory.cpp sources/StatSender.cpp include/StatSender.hpp sources/PageContainer.cpp include/PageContainer.hpp sources/Histogram.cpp include/Histogram.hpp)
 
 add_executable(demo

@@ -1,10 +1,9 @@
-//
-// Created by vladislav on 07.06.2021.
-//
+// Copyright 2020 Your Name <your_email>
+
 #include <UsedMemory.hpp>
 
 void UsedMemory::OnDataLoad(const std::vector<Item>& old_items,
-                            const std::vector<Item>& new_items)  {
+                            const std::vector<Item>& new_items) {
   log_->WriteDebug("UsedMemory::OnDataLoad");
 
   for (const auto& item : new_items) {
@@ -18,7 +17,8 @@ void UsedMemory::OnDataLoad(const std::vector<Item>& old_items,
     used_ -= sizeof(item.score);
   }
   log_->Write("UsedMemory::OnDataLoad: new size = " + std::to_string(used_));
-//    used_ = 0;   //А иначе у нас останется там число и дальнейший подсчет будет не актуальным
+  //    used_ = 0;   //А иначе у нас останется там число и дальнейший подсчет
+  //    будет не актуальным
 }
 void UsedMemory::OnRawDataLoad(const std::vector<std::string>& old_items,
                                const std::vector<std::string>& new_items) {
@@ -31,6 +31,7 @@ void UsedMemory::OnRawDataLoad(const std::vector<std::string>& old_items,
     used_ -= item.capacity();
   }
   log_->Write("UsedMemory::OnDataLoad: new size = " + std::to_string(used_));
-//    used_ = 0;   //А иначе у нас останется там число и дальнейший подсчет будет не актуальным
+  //    used_ = 0;   //А иначе у нас останется там число и дальнейший подсчет
+  //    будет не актуальным
 }
 size_t UsedMemory::used() const { return used_; }

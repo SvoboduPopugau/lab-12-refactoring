@@ -1,16 +1,13 @@
-//
-// Created by vladislav on 07.06.2021.
-//
-
 // Copyright 2020 Your Name <your_email>
 
-#ifndef USEDMEMORY_HPP_
-#define USEDMEMORY_HPP_
+#ifndef INCLUDE_USEDMEMORY_HPP_
+#define INCLUDE_USEDMEMORY_HPP_
 
+#include <string>
 #include <vector>
 
+#include "Item.hpp"
 #include "Log.hpp"
-#include "header.hpp"
 
 class UsedMemory {
  public:
@@ -29,5 +26,4 @@ class UsedMemory {
   size_t used_ = 0;
 };
 
-
-#endif  // USEDMEMORY_HPP_
+#endif  // INCLUDE_USEDMEMORY_HPP_

@@ -4,8 +4,8 @@
 
 // Copyright 2020 Your Name <your_email>
 
-#ifndef LAB_12_REFACTORING_HISTOGRAM_HPP
-#define LAB_12_REFACTORING_HISTOGRAM_HPP
+#ifndef HISTOGRAM_HPP_
+#define HISTOGRAM_HPP_
 
 #include <algorithm>
 #include <fstream>
@@ -28,11 +28,11 @@ class Histogram {
  private:
   Histogram() = default;
   Histogram(Histogram& tmp) = delete;
-  Histogram& operator = (Histogram& tmp) = delete;
+  Histogram& operator=(Histogram& tmp) = delete;
 
  private:
   float avg_ = 0;
   uint skipped_ = 0;
 };
 
-#endif  // LAB_12_REFACTORING_HISTOGRAM_HPP
+#endif  // HISTOGRAM_HPP_
