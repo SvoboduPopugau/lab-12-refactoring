@@ -13,8 +13,8 @@ void StatSender::Skip(const Item& item) {
 }
 void StatSender::AsyncSend(const std::vector<Item>& items,
                            std::string_view path) {
-  log_->Write(path);
-  log_->Write("send stat " + std::to_string(items.size()));
+  log_->Write("send stat: " + std::string(path) + " " + std::to_string(items.size()));
+//  log_->Write("send stat " + std::to_string(items.size()));
 
   for (const auto& item : items) {
     log_->WriteDebug("send: " + item.id);

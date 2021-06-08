@@ -25,7 +25,6 @@
 
 constexpr size_t kMinLines = 10;
 
-
 class PageContainer {
  public:
   [[nodiscard]] const Item& ByIndex(size_t i) const;
@@ -37,17 +36,23 @@ class PageContainer {
   void Load(std::istream& io, float threshold);
 
   void Reload(float threshold);
+  void PrintTable() const;
 
-  PageContainer(const Log& log, UsedMemory* memory_counter)
-      : log_(&log), memory_counter_(memory_counter), stat_sender_(new StatSender(log)){}
+  size_t GetRawDataSize();
+  size_t GetDataSize();
+
+  PageContainer(UsedMemory* memory_counter)
+      : memory_counter_(memory_counter),
+        stat_sender_(new StatSender(Log::Instance())) {}
+
+  PageContainer(UsedMemory* memory_counter, StatSender* stat_sender)
+      : memory_counter_(memory_counter), stat_sender_(stat_sender) {}
 
  private:
-  const Log* log_;
   std::unique_ptr<UsedMemory> memory_counter_;
   std::unique_ptr<StatSender> stat_sender_;
   std::vector<Item> data_;
   std::vector<std::string> raw_data_;
 };
-
 
 #endif  // PAGECONTAINER_H_

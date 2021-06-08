@@ -21,10 +21,11 @@ class Log {
   explicit Log() = default;
   Log(Log& tmp) = delete;
   Log& operator=(Log& tmp) = delete;
+  ~Log() = default;
 
  private:
   bool level_ = false;
-  mutable std::ostream* out_;
+  mutable std::ostream* out_ = &std::cout;
 };
 
 #endif  // LOG_HPP_

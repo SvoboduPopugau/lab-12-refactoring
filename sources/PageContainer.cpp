@@ -25,10 +25,11 @@ void PageContainer::Load(std::istream& io, float threshold) {
 
     Item item;
     stream >> item.id >> item.name >> item.score;
+    Log::Instance().WriteDebug("DEBUG_LOG " + item.id + " " + item.name + " " + std::to_string(item.score));
 
-    if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
-      throw std::runtime_error("already seen");
-    }
+      if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
+        throw std::runtime_error("already seen");
+        }
 
     if (item.score > threshold) {
       data.push_back(std::move(item));
@@ -58,7 +59,7 @@ void PageContainer::RawDataLoad(std::istream& io) {
   if (io.peek() == EOF)
     throw std::runtime_error("Stream is empty");
 
-  log_->WriteDebug("Stream can be read");
+  Log::Instance().WriteDebug("Stream can be read");
 
   while (!io.eof()) {
     std::string line;
@@ -76,6 +77,7 @@ void PageContainer::RawDataLoad(std::istream& io) {
 }
 void PageContainer::Reload(float threshold) {
   Histogram::Instance().ResetSkipped();
+  Log::Instance().WriteDebug("PageContainer::Reload");
 
   std::vector<Item> data;
   std::set<std::string> ids;
@@ -87,8 +89,12 @@ void PageContainer::Reload(float threshold) {
     Item item;
     stream >> item.id >> item.name >> item.score;
 
-    if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
-      throw std::runtime_error("already seen");
+    try {
+      if (auto&& [_, inserted] = ids.insert(item.id); !inserted) {
+        throw std::runtime_error("already seen");
+      }
+    } catch (std::runtime_error& ex) {
+      Log::Instance().WriteDebug(item.id + " " + ex.what());
     }
 
     if (item.score > threshold) {
@@ -110,3 +116,19 @@ void PageContainer::Reload(float threshold) {
   stat_sender_->OnLoaded(data);
   data_ = std::move(data);
 }
+void PageContainer::PrintTable() const {
+  std::cout << "|\tid\t |\t\tname\t\t|\tscore\t|\n";
+  std::string separator = "_________________________________________\n";
+  std::cout << separator;
+  for (size_t i = 0; i < data_.size(); ++i) {
+    const auto& item = ByIndex(i);
+    std::cout << "|   " << item.id << "\t |\t\t" <<
+              item.name << "\t\t|\t" << item.score << "\t\t|" << std::endl;
+    const auto& item2 = ById(std::to_string(i));
+    std::cout << "|   " << item2.id << "\t |\t\t" <<
+              item2.name << "\t\t|\t" << item2.score << "\t\t|" << std::endl;
+    std::cout << separator;
+  }
+}
+size_t PageContainer::GetRawDataSize() { return raw_data_.size(); }
+size_t PageContainer::GetDataSize() { return data_.size(); }

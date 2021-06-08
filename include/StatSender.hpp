@@ -19,8 +19,10 @@ class StatSender {
 
   void Skip(const Item& item);
 
+  virtual ~StatSender() = default;
+
  private:
-  void AsyncSend(const std::vector<Item>& items, std::string_view path);
+  virtual void AsyncSend(const std::vector<Item>& items, std::string_view path);
 
  private:
   const Log* log_;
