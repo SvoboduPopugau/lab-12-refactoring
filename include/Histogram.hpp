@@ -4,8 +4,8 @@
 
 // Copyright 2020 Your Name <your_email>
 
-#ifndef HISTOGRAM_HPP_
-#define HISTOGRAM_HPP_
+#ifndef INCLUDE_HISTOGRAM_HPP_
+#define INCLUDE_HISTOGRAM_HPP_
 
 #include <algorithm>
 #include <fstream>
@@ -35,4 +35,4 @@ class Histogram {
   uint skipped_ = 0;
 };
 
-#endif  // HISTOGRAM_HPP_
+#endif  // INCLUDE_HISTOGRAM_HPP_

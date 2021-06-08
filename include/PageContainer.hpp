@@ -4,8 +4,8 @@
 
 // Copyright 2020 Your Name <your_email>
 
-#ifndef INCLUDE_PAGECONTAINER_H_
-#define INCLUDE_PAGECONTAINER_H_
+#ifndef INCLUDE_PAGECONTAINER_HPP_
+#define INCLUDE_PAGECONTAINER_HPP_
 
 #include <algorithm>
 #include <fstream>
@@ -55,4 +55,4 @@ class PageContainer {
   std::vector<std::string> raw_data_;
 };
 
-#endif  // INCLUDE_PAGECONTAINER_H_
+#endif  // INCLUDE_PAGECONTAINER_HPP_
